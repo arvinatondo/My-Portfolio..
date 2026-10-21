@@ -11,3 +11,75 @@
 @media(max-width:800px){.hero{min-height:650px}.hero-stamp{width:210px;height:210px;right:0;top:auto;bottom:95px;opacity:1}.stamp-center{width:138px;height:138px}.stamp-caption{bottom:25px;font-size:.52rem}.stamp-ring{font-size:.45rem}.about-grid,.skills-layout{grid-template-columns:1fr;gap:35px}.about-mark{min-height:220px}.skills-layout .section-head{margin-bottom:0}.nav-links{gap:18px}.section{padding:80px 0}}
 @media(max-width:600px){.container{width:88%}.nav{min-height:68px}.menu-toggle{display:block;cursor:pointer}.nav-links{display:none;position:absolute;left:6%;right:6%;top:62px;padding:18px;background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 28px rgba(73,54,44,.1);flex-direction:column;align-items:flex-start;gap:15px}.nav-links.open{display:flex}.hero{min-height:680px;padding:65px 0 155px}.hero-stamp{width:175px;height:175px;bottom:80px;right:2%}.stamp-ring{inset:7px;font-size:.36rem;padding-top:8px}.stamp-center{width:112px;height:112px}.stamp-caption{bottom:17px;font-size:.42rem}.scroll-cue{bottom:28px}h1{font-size:clamp(3.2rem,14vw,5rem);letter-spacing:-2.5px}.section{padding:72px 0}.section-head h2{font-size:clamp(2.5rem,11vw,3.6rem)}.section-kicker{font-size:.62rem;gap:9px;letter-spacing:1.4px}.project-card{grid-template-columns:32px 1fr 30px;gap:10px;padding:25px 0}.project-card:hover{padding-left:7px;padding-right:7px}.project-meta{font-size:.58rem;gap:10px}.project-card h3{font-size:1.55rem}.project-card p{font-size:.87rem}.project-arrow{width:30px;height:30px;font-size:.85rem}.tag-row{gap:6px}.tag-row span{font-size:.64rem}.contact-section{padding:78px 0}.contact-section h2{font-size:clamp(2.7rem,12vw,4rem)}.footer{flex-wrap:wrap}.footer p{order:3;width:100%}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.reveal{opacity:1;transform:none}}
+/* Profile photo fix — append this entire file to the VERY BOTTOM of style.css.
+   It overrides rotation and enlarges the hero profile circle without replacing your design. */
+.hero-stamp,
+.hero-stamp:hover,
+.hero-stamp:focus,
+.hero-stamp:active,
+.hero-stamp .stamp-center,
+.hero-stamp .stamp-center:hover,
+.hero-stamp img,
+.hero-stamp .stamp-center img {
+  rotate: none !important;
+  transform: none !important;
+}
+
+.hero-stamp {
+  width: 300px !important;
+  height: 300px !important;
+  min-width: 300px !important;
+  min-height: 300px !important;
+  animation: profile-fix-enter 0.7s ease-out both !important;
+  transition: box-shadow .25s ease, filter .25s ease !important;
+  box-shadow: 0 12px 30px rgba(113, 57, 39, .14) !important;
+}
+
+.hero-stamp:hover {
+  transform: translateY(-4px) scale(1.025) !important;
+  box-shadow: 0 0 0 7px rgba(190, 104, 73, .10),
+              0 14px 38px rgba(160, 77, 52, .30) !important;
+}
+
+.hero-stamp .stamp-center {
+  width: 220px !important;
+  height: 220px !important;
+  overflow: hidden !important;
+  border-radius: 50% !important;
+  transition: box-shadow .25s ease !important;
+}
+
+.hero-stamp .stamp-center img,
+.hero-stamp img {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  border-radius: 50% !important;
+  transform: none !important;
+  rotate: none !important;
+}
+
+.hero-stamp:hover .stamp-center {
+  box-shadow: 0 0 24px rgba(190, 104, 73, .32) !important;
+}
+
+@keyframes profile-fix-enter {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .hero-stamp { width: 240px !important; height: 240px !important; min-width: 240px !important; min-height: 240px !important; }
+  .hero-stamp .stamp-center { width: 176px !important; height: 176px !important; }
+}
+
+@media (max-width: 600px) {
+  .hero-stamp { width: 200px !important; height: 200px !important; min-width: 200px !important; min-height: 200px !important; }
+  .hero-stamp .stamp-center { width: 148px !important; height: 148px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-stamp { animation: none !important; transition: none !important; }
+}
